@@ -1,12 +1,9 @@
 {
   "name": "advanced-type-utilities",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "keywords": [],
-  "license": "ISC",
-  "author": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  "license": "CC0-1.0",
+  "author": "ootidea",
+  "scripts": {}
 }
