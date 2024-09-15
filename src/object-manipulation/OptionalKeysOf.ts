@@ -21,7 +21,7 @@ it('returns never for objects with no optional keys', () => {
   assertTypeEquality<OptionalKeysOf<{ a: 1 }>, never>()
   assertTypeEquality<OptionalKeysOf<{}>, never>()
 })
-it('considers only explicitly optional properties, not T | undefined types', () => {
+it('is not affected by whether the property type is T | undefined', () => {
   assertTypeEquality<OptionalKeysOf<{ a: 1 | undefined }>, never>()
   assertTypeEquality<OptionalKeysOf<{ a?: 1 | undefined }>, 'a'>()
   assertTypeEquality<OptionalKeysOf<{ [key: string]: 1 | undefined }>, never>()
