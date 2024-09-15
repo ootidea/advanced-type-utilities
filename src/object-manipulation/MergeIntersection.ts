@@ -6,6 +6,18 @@ it('merges intersections of object types', () => {
   assertTypeEquality<MergeIntersection<{ a: 1 } & { b: 2 }>, { a: 1; b: 2 }>()
   assertTypeEquality<MergeIntersection<{ a: 1 } & {}>, { a: 1 }>()
 })
+it('also merges index signatures', () => {
+  assertTypeEquality<MergeIntersection<{ a: 1 } & { [x: number]: 2 }>, { a: 1; [x: number]: 2 }>()
+  assertTypeEquality<MergeIntersection<{ [x: string]: 1 } & { [x: number]: 1 }>, { [x: string | number]: 1 }>()
+})
+it('drops call signatures', () => {
+  assertTypeEquality<MergeIntersection<{ a: 1; (x: number): 2 }>, { a: 1 }>()
+  assertTypeEquality<MergeIntersection<(x: number) => 2>, {}>()
+})
+it('drops construct signatures', () => {
+  assertTypeEquality<MergeIntersection<{ a: 1; new (x: number): 2 }>, { a: 1 }>()
+  assertTypeEquality<MergeIntersection<new (x: number) => 2>, {}>()
+})
 it('distributes over union types', () => {
   assertTypeEquality<MergeIntersection<string | ({ b: 2 } & { c: 3 })>, string | { b: 2; c: 3 }>()
   assertTypeEquality<MergeIntersection<{ a: 1 } | ({ b: 2 } & { c: 3 })>, { a: 1 } | { b: 2; c: 3 }>()
