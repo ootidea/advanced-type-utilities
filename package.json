@@ -13,10 +13,10 @@
   ],
   "scripts": {
     "build": "rimraf dist && tsc --declaration --declarationDir dist --emitDeclarationOnly",
+    "fix": "biome check --write",
     "check": "run-p \"check:*\"",
     "check:type": "tsc --noEmit",
     "check:biome": "biome check",
-    "fix": "biome check --write",
     "prepublishOnly": "pnpm check && pnpm build",
     "postversion": "npm publish ./ && git push --follow-tags"
   },
