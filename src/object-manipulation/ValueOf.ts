@@ -13,6 +13,9 @@ it('extracts value types for number and symbol keys as well', () => {
 })
 it('returns never for objects with no properties', () => {
   assertTypeEquality<ValueOf<{}>, never>()
+  assertTypeEquality<ValueOf<() => unknown>, never>()
+  assertTypeEquality<ValueOf<new () => unknown>, never>()
+  assertTypeEquality<ValueOf<abstract new () => unknown>, never>()
 })
 it('extracts value type of index signature', () => {
   assertTypeEquality<ValueOf<{ [key: string]: 1 }>, 1>()
