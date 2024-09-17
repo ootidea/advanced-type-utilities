@@ -1,3 +1,4 @@
+export type { Digit } from './type-alias/Digit'
 export type { nullish } from './type-alias/nullish'
 export type { TypedArray } from './type-alias/TypedArray'
 
