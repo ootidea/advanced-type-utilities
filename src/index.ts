@@ -1,4 +1,6 @@
 export type { Digit } from './type-alias/Digit'
+export type { Infinity } from './type-alias/Infinity'
+export type { NegativeInfinity } from './type-alias/NegativeInfinity'
 export type { nullish } from './type-alias/nullish'
 export type { TypedArray } from './type-alias/TypedArray'
 
