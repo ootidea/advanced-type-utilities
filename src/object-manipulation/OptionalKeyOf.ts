@@ -1,4 +1,4 @@
-import { assertTypeEquality, it } from '../assertTypeEquality'
+import { assertTypeEquality, it } from '../testUtilities'
 import type { ValueOf } from './ValueOf'
 
 export type OptionalKeyOf<T> = ValueOf<{

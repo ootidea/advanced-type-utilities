@@ -1,5 +1,5 @@
 import type { IsOneOf } from '../Type level predicate/IsOneOf'
-import { assertTypeEquality, it } from '../assertTypeEquality'
+import { assertTypeEquality, it } from '../testUtilities'
 import type { Infinity } from '../type-alias/Infinity'
 import type { NegativeInfinity } from '../type-alias/NegativeInfinity'
 

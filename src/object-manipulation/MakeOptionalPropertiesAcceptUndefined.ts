@@ -1,4 +1,4 @@
-import { assertTypeEquality, it } from '../assertTypeEquality'
+import { assertTypeEquality, it } from '../testUtilities'
 
 export type MakeOptionalPropertiesAcceptUndefined<T> = T extends T
   ? { [K in keyof T]: T extends Record<K, any> ? T[K] : T[K] | undefined }
