@@ -57,4 +57,5 @@ it('distributes over union types', () => {
   assertTypeEquality<NumberOrderRankOf<-1 | 0 | 1>, 3 | 5 | 7>()
   assertTypeEquality<NumberOrderRankOf<number>, 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9>()
   assertTypeEquality<NumberOrderRankOf<any>, 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9>()
+  assertTypeEquality<NumberOrderRankOf<never>, never>()
 })
