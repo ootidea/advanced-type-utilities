@@ -27,7 +27,7 @@
     "check": "run-p \"check:*\"",
     "check:type": "tsc --noEmit",
     "check:biome": "biome check",
-    "preversion": "pnpm check && pnpm build",
+    "preversion": "pnpm fix && pnpm check && pnpm build",
     "postversion": "npm publish ./ && git push --follow-tags"
   },
   "devDependencies": {
