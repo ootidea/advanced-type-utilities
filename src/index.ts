@@ -5,6 +5,7 @@ export type { NumberOrderRankOf } from './number-processing/NumberOrderRankOf'
 export type { MakeOptionalPropertiesAcceptUndefined } from './object-manipulation/MakeOptionalPropertiesAcceptUndefined'
 export type { MergeIntersection } from './object-manipulation/MergeIntersection'
 export type { OptionalKeyOf } from './object-manipulation/OptionalKeyOf'
+export type { OverwriteProperties } from './object-manipulation/OverwriteProperties'
 export type { ValueOf } from './object-manipulation/ValueOf'
 
 export type { Digit } from './type-alias/Digit'
