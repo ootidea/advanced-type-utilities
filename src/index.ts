@@ -1,4 +1,5 @@
 export type { FixedLengthArray } from './array-generation/FixedLengthArray'
+export type { NonEmptyArray } from './array-generation/NonEmptyArray'
 
 export type { NumberOrderRankOf } from './number-processing/NumberOrderRankOf'
 
