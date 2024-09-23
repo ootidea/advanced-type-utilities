@@ -8,6 +8,7 @@ export type { MergeIntersection } from './object-manipulation/MergeIntersection'
 export type { OptionalKeyOf } from './object-manipulation/OptionalKeyOf'
 export type { OverwriteProperties } from './object-manipulation/OverwriteProperties'
 export type { ValueOf } from './object-manipulation/ValueOf'
+export type { Writable } from './object-manipulation/Writable'
 
 export type { Digit } from './type-alias/Digit'
 export type { Infinity } from './type-alias/Infinity'
