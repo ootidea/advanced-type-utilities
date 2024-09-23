@@ -17,3 +17,6 @@ export type { TypedArray } from './type-alias/TypedArray'
 
 export type { Equals } from './Type level predicate/Equals'
 export type { IsOneOf } from './Type level predicate/IsOneOf'
+
+export type { LiteralAutoComplete } from './LiteralAutoComplete'
+export type { LiteralToPrimitive } from './LiteralToPrimitive'
