@@ -1,0 +1,43 @@
+import type { Not } from '../boolean-operators/Not'
+import { assertTypeEquality, it, test } from '../testUtilities'
+import type { DigitArrayLessThan } from './DigitArrayLessThan'
+import type { DigitsToDigitArray } from './DigitsToDigitArray'
+
+export type BigintLessThan<N extends bigint, M extends bigint> = `${N}` extends `-${infer NP}`
+  ? `${M}` extends `-${infer MP}`
+    ? Not<DigitArrayLessThan<DigitsToDigitArray<NP>, DigitsToDigitArray<MP>>>
+    : true
+  : `${M}` extends `-${string}`
+    ? false
+    : DigitArrayLessThan<DigitsToDigitArray<`${N}`>, DigitsToDigitArray<`${M}`>>
+
+test('positive-positive', () => {
+  assertTypeEquality<BigintLessThan<2n, 6n>, true>()
+  assertTypeEquality<BigintLessThan<123n, 50n>, false>()
+  assertTypeEquality<BigintLessThan<50n, 123n>, true>()
+})
+test('negative-negative', () => {
+  assertTypeEquality<BigintLessThan<-2n, -6n>, false>()
+  assertTypeEquality<BigintLessThan<-6n, -2n>, true>()
+})
+test('positive-negative', () => {
+  assertTypeEquality<BigintLessThan<2n, -6n>, false>()
+  assertTypeEquality<BigintLessThan<6n, -2n>, false>()
+})
+test('negative-positive', () => {
+  assertTypeEquality<BigintLessThan<-2n, 6n>, true>()
+  assertTypeEquality<BigintLessThan<-6n, 2n>, true>()
+})
+test('about zero', () => {
+  assertTypeEquality<BigintLessThan<0n, 1n>, true>()
+  assertTypeEquality<BigintLessThan<0n, 0n>, false>()
+  assertTypeEquality<BigintLessThan<1n, 0n>, false>()
+  assertTypeEquality<BigintLessThan<-1n, 0n>, true>()
+  assertTypeEquality<BigintLessThan<0n, -1n>, false>()
+})
+it('compares the number of digits', () => {
+  assertTypeEquality<BigintLessThan<0n, 1234567890n>, true>()
+  assertTypeEquality<BigintLessThan<1234567890n, 0n>, false>()
+  assertTypeEquality<BigintLessThan<-1n, -1234567890n>, false>()
+  assertTypeEquality<BigintLessThan<-1234567890n, -1n>, true>()
+})
