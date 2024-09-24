@@ -1,7 +1,6 @@
 import type { Infinity } from '../common-type-alias/Infinity'
 import type { NegativeInfinity } from '../common-type-alias/NegativeInfinity'
 import { assertTypeEquality, it } from '../testUtilities'
-import type { IsOneOf } from '../type-level-predicate/IsOneOf'
 
 /**
  * 9: Infinity
@@ -15,7 +14,7 @@ import type { IsOneOf } from '../type-level-predicate/IsOneOf'
  * 1: -Infinity
  */
 export type NumberOrderRankOf<T extends number> = T extends T
-  ? IsOneOf<T, [number, any]> extends true
+  ? number extends T
     ? 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
     : T extends NegativeInfinity
       ? 1
