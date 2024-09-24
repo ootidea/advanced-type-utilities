@@ -36,11 +36,7 @@ it('distributes over union types', () => {
   assertTypeEquality<FixedLengthArray<any>, unknown[]>()
 })
 
-type DigitsToFixedLengthArray<
-  S extends string,
-  T = unknown,
-  Acc extends T[] = [],
-> = S extends `${infer H extends Digit}${infer L}`
+type DigitsToFixedLengthArray<S extends string, T = unknown, Acc extends T[] = []> = S extends `${infer H extends Digit}${infer L}`
   ? DigitsToFixedLengthArray<L, T, [...RepeatTupleTenTimes<Acc>, ...DigitToFixedLengthArray<H, T>]>
   : Acc
 
