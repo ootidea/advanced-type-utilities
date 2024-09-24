@@ -1,10 +1,9 @@
-import type { Not } from '../boolean-operators/Not'
 import { assertTypeEquality, it, test } from '../testUtilities'
 import type { DigitsLessThan } from './DigitArrayLessThan'
 
 export type BigintLessThan<N extends bigint, M extends bigint> = `${N}` extends `-${infer NP}`
   ? `${M}` extends `-${infer MP}`
-    ? Not<DigitsLessThan<NP, MP>>
+    ? DigitsLessThan<MP, NP>
     : true
   : `${M}` extends `-${string}`
     ? false
@@ -18,6 +17,7 @@ test('positive-positive', () => {
 test('negative-negative', () => {
   assertTypeEquality<BigintLessThan<-2n, -6n>, false>()
   assertTypeEquality<BigintLessThan<-6n, -2n>, true>()
+  assertTypeEquality<BigintLessThan<-2n, -2n>, false>()
 })
 test('positive-negative', () => {
   assertTypeEquality<BigintLessThan<2n, -6n>, false>()
