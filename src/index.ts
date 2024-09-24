@@ -1,6 +1,8 @@
 export type { FixedLengthArray } from './array-generation/FixedLengthArray'
 export type { NonEmptyArray } from './array-generation/NonEmptyArray'
 
+export type { Not } from './boolean-operators/Not'
+
 export type { NumberOrderRankOf } from './number-processing/NumberOrderRankOf'
 
 export type { MakeOptionalPropertiesAcceptUndefined } from './object-manipulation/MakeOptionalPropertiesAcceptUndefined'
