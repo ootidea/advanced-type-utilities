@@ -6,11 +6,11 @@ import type { IsNaturalNumber } from '../type-level-predicate/IsNaturalNumber'
 export type FixedLengthArray<N extends number, T = unknown> = N extends N
   ? number extends N
     ? T[]
-    : IsNaturalNumber<N> extends true
-      ? `${N}` extends `${string}e+${string}`
+    : IsNaturalNumber<N> extends false
+      ? never
+      : `${N}` extends `${string}e+${string}`
         ? T[]
         : DigitsToFixedLengthArray<`${N}`, T>
-      : never
   : never
 
 it('generates an array type with the specified length', () => {
