@@ -20,6 +20,8 @@ export type { OverwriteProperties } from './object-manipulation/OverwritePropert
 export type { ValueOf } from './object-manipulation/ValueOf'
 export type { Writable } from './object-manipulation/Writable'
 
+export type { RepeatString } from './string-processing/RepeatString'
+
 export type { Equals } from './type-level-predicate/Equals'
 export type { IsOneOf } from './type-level-predicate/IsOneOf'
 

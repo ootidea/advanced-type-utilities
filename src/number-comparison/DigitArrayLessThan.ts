@@ -9,7 +9,7 @@ export type DigitsLessThan<N extends string, M extends string> = DigitArrayLessT
  * DigitsToDigitArray<'0'> equals ['0']
  * DigitsToDigitArray<''> equals []
  */
-type DigitsToDigitArray<N extends string> = N extends `${infer H extends Digit}${infer T}` ? [H, ...DigitsToDigitArray<T>] : []
+type DigitsToDigitArray<N extends string> = N extends `${infer H extends Digit}${infer L}` ? [H, ...DigitsToDigitArray<L>] : []
 
 /**
  * @example
