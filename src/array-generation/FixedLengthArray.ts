@@ -1,11 +1,17 @@
 import type { Digit } from '../common-type-alias/Digit'
+import type { Infinity } from '../common-type-alias/Infinity'
 import { assertTypeEquality, it } from '../testUtilities'
+import type { IsNaturalNumber } from '../type-level-predicate/IsNaturalNumber'
 
-export type FixedLengthArray<N extends number, T = unknown> = number extends N
-  ? T[]
-  : `${N}` extends `-${string}` | `${string}.${string}` | `${string}e${string}` | 'Infinity'
-    ? never
-    : DigitsToFixedLengthArray<`${N}`, T>
+export type FixedLengthArray<N extends number, T = unknown> = N extends N
+  ? number extends N
+    ? T[]
+    : IsNaturalNumber<N> extends true
+      ? `${N}` extends `${string}e+${string}`
+        ? T[]
+        : DigitsToFixedLengthArray<`${N}`, T>
+      : never
+  : never
 
 it('generates an array type with the specified length', () => {
   assertTypeEquality<FixedLengthArray<0>, []>()
@@ -23,10 +29,10 @@ it('returns never type for non-natural numbers', () => {
   assertTypeEquality<FixedLengthArray<-1e21>, never>()
   assertTypeEquality<FixedLengthArray<1e-21>, never>()
   assertTypeEquality<FixedLengthArray<-1e-21>, never>()
+  assertTypeEquality<FixedLengthArray<Infinity>, never>()
 })
-it('returns never type for natural numbers in exponential notation', () => {
-  assertTypeEquality<FixedLengthArray<1e21>, never>()
-  assertTypeEquality<FixedLengthArray<1e999>, never>()
+it('returns an array type for a huge number', () => {
+  assertTypeEquality<FixedLengthArray<1e21>, unknown[]>()
 })
 it('distributes over union types', () => {
   assertTypeEquality<FixedLengthArray<0 | 1>, [] | [unknown]>()
