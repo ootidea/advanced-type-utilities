@@ -6,7 +6,7 @@ it('returns the opposite of the input', () => {
   assertTypeEquality<Not<true>, false>()
   assertTypeEquality<Not<false>, true>()
 })
-it('distributes over unions', () => {
+it('distributes over union types', () => {
   assertTypeEquality<Not<boolean>, boolean>()
   assertTypeEquality<Not<never>, never>()
   assertTypeEquality<Not<any>, boolean>()

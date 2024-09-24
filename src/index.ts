@@ -23,6 +23,7 @@ export type { Writable } from './object-manipulation/Writable'
 export type { RepeatString } from './string-processing/RepeatString'
 
 export type { Equals } from './type-level-predicate/Equals'
+export type { IsNaturalNumber } from './type-level-predicate/IsNaturalNumber'
 export type { IsOneOf } from './type-level-predicate/IsOneOf'
 
 export type { LiteralAutoComplete } from './LiteralAutoComplete'
