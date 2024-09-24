@@ -1,5 +1,5 @@
-import type { IsOneOf } from './Type level predicate/IsOneOf'
 import { assertTypeEquality } from './testUtilities'
+import type { IsOneOf } from './type-level-predicate/IsOneOf'
 
 export type LiteralToPrimitive<T> = IsOneOf<T, [any, never, boolean]> extends true
   ? T

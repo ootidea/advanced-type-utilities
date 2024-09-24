@@ -1,5 +1,5 @@
-import type { Equals } from '../Type level predicate/Equals'
-import type { Digit } from '../type-alias/Digit'
+import type { Digit } from '../common-type-alias/Digit'
+import type { Equals } from '../type-level-predicate/Equals'
 
 export type DigitsLessThan<N extends string, M extends string> = DigitArrayLessThan<DigitsToDigitArray<N>, DigitsToDigitArray<M>>
 

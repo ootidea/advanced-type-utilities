@@ -1,6 +1,6 @@
-import type { IsOneOf } from '../Type level predicate/IsOneOf'
+import type { Digit } from '../common-type-alias/Digit'
 import { assertTypeEquality, it } from '../testUtilities'
-import type { Digit } from '../type-alias/Digit'
+import type { IsOneOf } from '../type-level-predicate/IsOneOf'
 
 export type FixedLengthArray<N extends number, T = unknown> = IsOneOf<N, [number, any]> extends true
   ? T[]

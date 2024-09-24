@@ -1,4 +1,4 @@
-import type { Equals } from './Type level predicate/Equals'
+import type { Equals } from './type-level-predicate/Equals'
 
 /**
  * @example

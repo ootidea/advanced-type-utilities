@@ -1,7 +1,7 @@
-import type { IsOneOf } from '../Type level predicate/IsOneOf'
+import type { Infinity } from '../common-type-alias/Infinity'
+import type { NegativeInfinity } from '../common-type-alias/NegativeInfinity'
 import { assertTypeEquality, it } from '../testUtilities'
-import type { Infinity } from '../type-alias/Infinity'
-import type { NegativeInfinity } from '../type-alias/NegativeInfinity'
+import type { IsOneOf } from '../type-level-predicate/IsOneOf'
 
 /**
  * 9: Infinity
