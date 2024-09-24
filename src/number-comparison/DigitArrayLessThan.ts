@@ -1,21 +1,25 @@
 import type { Equals } from '../Type level predicate/Equals'
 import type { Digit } from '../type-alias/Digit'
-import type { DigitsToDigitArray } from './DigitsToDigitArray'
+
+export type DigitsLessThan<N extends string, M extends string> = DigitArrayLessThan<DigitsToDigitArray<N>, DigitsToDigitArray<M>>
+
+/**
+ * @example
+ * DigitsToDigitArray<'123'> equals ['1', '2', '3']
+ * DigitsToDigitArray<'0'> equals ['0']
+ * DigitsToDigitArray<''> equals []
+ */
+type DigitsToDigitArray<N extends string> = N extends `${infer H extends Digit}${infer T}` ? [H, ...DigitsToDigitArray<T>] : []
 
 /**
  * @example
  * DigitArrayLessThan<['1', '2', '3'], ['4', '5']> // false
  * DigitArrayLessThan<['1', '2', '3'], ['4', '5', '6']> // true
  */
-export type DigitArrayLessThan<N extends readonly Digit[], M extends readonly Digit[]> = Equals<N['length'], M['length']> extends true
+type DigitArrayLessThan<N extends readonly Digit[], M extends readonly Digit[]> = Equals<N['length'], M['length']> extends true
   ? SameLengthDigitArrayLessThan<N, M>
   : DigitArrayLessThan<DigitsToDigitArray<`${N['length']}`>, DigitsToDigitArray<`${M['length']}`>>
 
-/**
- * @example
- * SameLengthDigitArrayLessThan<'123', '123'> // false
- * SameLengthDigitArrayLessThan<'123', '200'> // true
- */
 type SameLengthDigitArrayLessThan<N extends readonly Digit[], M extends readonly Digit[]> = [N, M] extends [
   [infer NH extends Digit, ...infer NT extends Digit[]],
   [infer MH extends Digit, ...infer MT extends Digit[]],
