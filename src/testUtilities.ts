@@ -39,3 +39,9 @@ export function test(title: string, block: () => unknown) {
   console.log(`test: ${title}`)
   block()
 }
+
+/** A function for grouping test cases and assigning a title. */
+export function describe(title: string, block: () => unknown) {
+  console.log(`describe: ${title}`)
+  block()
+}

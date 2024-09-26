@@ -10,6 +10,7 @@ export type { nullish } from './common-type-alias/nullish'
 export type { TypedArray } from './common-type-alias/TypedArray'
 
 export type { BigintLessThan } from './number-comparison/BigintLessThan'
+export type { NumberLessThan } from './number-comparison/NumberLessThan'
 
 export type { NumberOrderRankOf } from './number-processing/NumberOrderRankOf'
 

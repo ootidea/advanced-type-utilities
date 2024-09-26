@@ -1,6 +1,12 @@
 import type { Digit } from '../common-type-alias/Digit'
 import type { Equals } from '../type-level-predicate/Equals'
 
+/**
+ * @example
+ * DigitsLessThan<'123', '456'> // true
+ * DigitsLessThan<'123', '123'> // false
+ * DigitsLessThan<'123', '50'> // false
+ */
 export type DigitsLessThan<N extends string, M extends string> = DigitArrayLessThan<DigitsToDigitArray<N>, DigitsToDigitArray<M>>
 
 /**
@@ -29,7 +35,7 @@ type SameLengthDigitArrayLessThan<N extends readonly Digit[], M extends readonly
     : DigitLessThan<NH, MH>
   : false
 
-type DigitLessThan<N extends Digit, M extends Digit> = {
+export type DigitLessThan<N extends Digit, M extends Digit> = {
   '0': { '0': false; '1': true; '2': true; '3': true; '4': true; '5': true; '6': true; '7': true; '8': true; '9': true }
   '1': { '0': false; '1': false; '2': true; '3': true; '4': true; '5': true; '6': true; '7': true; '8': true; '9': true }
   '2': { '0': false; '1': false; '2': false; '3': true; '4': true; '5': true; '6': true; '7': true; '8': true; '9': true }
