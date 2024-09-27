@@ -11,6 +11,7 @@ export type { TypedArray } from './common-type-alias/TypedArray'
 
 export type { BigintLessThan } from './number-comparison/BigintLessThan'
 export type { NumberLessThan } from './number-comparison/NumberLessThan'
+export type { SortNumbers } from './number-comparison/SortNumbers'
 
 export type { NumberOrderRankOf } from './number-processing/NumberOrderRankOf'
 
