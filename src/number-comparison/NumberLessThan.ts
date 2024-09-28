@@ -12,55 +12,53 @@ export type NumberLessThan<N extends number, M extends number> = N extends N
       ? boolean
       : number extends M
         ? boolean
-        : DigitLessThan<`${NumberOrderRankOf<N>}`, `${NumberOrderRankOf<M>}`> extends true
-          ? true
-          : DigitLessThan<`${NumberOrderRankOf<M>}`, `${NumberOrderRankOf<N>}`> extends true
+        : Equals<NumberOrderRankOf<N>, NumberOrderRankOf<M>> extends false
+          ? DigitLessThan<`${NumberOrderRankOf<N>}`, `${NumberOrderRankOf<M>}`>
+          : N extends NegativeInfinity
             ? false
-            : N extends NegativeInfinity
-              ? false
-              : `${N}` extends `-${string}e+${string}`
+            : `${N}` extends `-${string}e+${string}`
+              ? boolean // TODO: Implement this case
+              : `${N}` extends `-${string}e-${string}`
                 ? boolean // TODO: Implement this case
-                : `${N}` extends `-${string}e-${string}`
-                  ? boolean // TODO: Implement this case
-                  : `${N}` extends `-${infer NI}.${infer NF}`
-                    ? `${M}` extends `-${infer MI}.${infer MF}`
+                : `${N}` extends `-${infer NI}.${infer NF}`
+                  ? `${M}` extends `-${infer MI}.${infer MF}`
+                    ? Equals<NI, MI> extends true
+                      ? AfterDecimalPointDigitsLessThan<MF, NF>
+                      : DigitsLessThan<MI, NI>
+                    : `${M}` extends `-${infer MI}`
                       ? Equals<NI, MI> extends true
-                        ? AfterDecimalPointDigitsLessThan<MF, NF>
+                        ? true
+                        : DigitsLessThan<MI, NI>
+                      : never // Unreachable
+                  : `${N}` extends `-${infer NI}`
+                    ? `${M}` extends `-${infer MI}.${string}`
+                      ? Equals<NI, MI> extends true
+                        ? false
                         : DigitsLessThan<MI, NI>
                       : `${M}` extends `-${infer MI}`
-                        ? Equals<NI, MI> extends true
-                          ? true
-                          : DigitsLessThan<MI, NI>
+                        ? DigitsLessThan<MI, NI>
                         : never // Unreachable
-                    : `${N}` extends `-${infer NI}`
-                      ? `${M}` extends `-${infer MI}.${string}`
-                        ? Equals<NI, MI> extends true
-                          ? false
-                          : DigitsLessThan<MI, NI>
-                        : `${M}` extends `-${infer MI}`
-                          ? DigitsLessThan<MI, NI>
-                          : never // Unreachable
-                      : N extends 0
+                    : N extends 0
+                      ? false
+                      : N extends Infinity
                         ? false
-                        : N extends Infinity
-                          ? false
-                          : `${N}` extends `${string}e+${string}`
+                        : `${N}` extends `${string}e+${string}`
+                          ? boolean // TODO: Implement this case
+                          : `${N}` extends `${string}e-${string}`
                             ? boolean // TODO: Implement this case
-                            : `${N}` extends `${string}e-${string}`
-                              ? boolean // TODO: Implement this case
-                              : `${N}` extends `${infer NI}.${infer NF}`
-                                ? `${M}` extends `${infer MI}.${infer MF}`
-                                  ? Equals<NI, MI> extends true
-                                    ? AfterDecimalPointDigitsLessThan<NF, MF>
-                                    : DigitsLessThan<NI, MI>
-                                  : Equals<NI, `${M}`> extends true
-                                    ? false
-                                    : DigitsLessThan<NI, `${M}`>
-                                : `${M}` extends `${infer MI}.${string}`
-                                  ? Equals<`${N}`, MI> extends true
-                                    ? true
-                                    : DigitsLessThan<`${N}`, MI>
-                                  : DigitsLessThan<`${N}`, `${M}`>
+                            : `${N}` extends `${infer NI}.${infer NF}`
+                              ? `${M}` extends `${infer MI}.${infer MF}`
+                                ? Equals<NI, MI> extends true
+                                  ? AfterDecimalPointDigitsLessThan<NF, MF>
+                                  : DigitsLessThan<NI, MI>
+                                : Equals<NI, `${M}`> extends true
+                                  ? false
+                                  : DigitsLessThan<NI, `${M}`>
+                              : `${M}` extends `${infer MI}.${string}`
+                                ? Equals<`${N}`, MI> extends true
+                                  ? true
+                                  : DigitsLessThan<`${N}`, MI>
+                                : DigitsLessThan<`${N}`, `${M}`>
     : never
   : never
 
