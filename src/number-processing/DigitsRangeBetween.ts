@@ -1,5 +1,5 @@
 import type { Digit } from '../common-type-alias/Digit'
-import type { DigitLessThan } from '../number-comparison/DigitArrayLessThan'
+import type { DigitLessThan } from '../number-comparison/DigitsLessThan'
 import { assertTypeEquality, describe, it, test } from '../testUtilities'
 import type { Equals } from '../type-level-predicate/Equals'
 

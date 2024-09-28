@@ -1,7 +1,7 @@
 import type { Digit } from '../common-type-alias/Digit'
 import { assertTypeEquality } from '../testUtilities'
 import type { Equals } from '../type-level-predicate/Equals'
-import type { DigitLessThan } from './DigitArrayLessThan'
+import type { DigitLessThan } from './DigitsLessThan'
 
 export type AfterDecimalPointDigitsLessThan<N extends string, M extends string> = N extends `${infer NH extends Digit}${infer NL}`
   ? M extends `${infer MH extends Digit}${infer ML}`

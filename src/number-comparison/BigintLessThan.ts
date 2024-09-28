@@ -1,5 +1,5 @@
 import { assertTypeEquality, it, test } from '../testUtilities'
-import type { DigitsLessThan } from './DigitArrayLessThan'
+import type { DigitsLessThan } from './DigitsLessThan'
 
 export type BigintLessThan<N extends bigint, M extends bigint> = N extends N
   ? M extends M

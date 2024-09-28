@@ -7,31 +7,50 @@ import type { Equals } from '../type-level-predicate/Equals'
  * DigitsLessThan<'123', '123'> // false
  * DigitsLessThan<'123', '50'> // false
  */
-export type DigitsLessThan<N extends string, M extends string> = DigitArrayLessThan<DigitsToDigitArray<N>, DigitsToDigitArray<M>>
+export type DigitsLessThan<N extends string, M extends string> = StringLengthEquals<N, M> extends true
+  ? SameLengthDigitsLessThan<N, M>
+  : StringLengthLessThan<N, M>
 
 /**
  * @example
- * DigitsToDigitArray<'123'> equals ['1', '2', '3']
- * DigitsToDigitArray<'0'> equals ['0']
- * DigitsToDigitArray<''> equals []
+ * StringLengthEquals<'1', '2'> // true
+ * StringLengthEquals<'1', '11'> // false
+ * StringLengthEquals<'11', '1'> // false
  */
-type DigitsToDigitArray<N extends string> = N extends `${infer H extends Digit}${infer L}` ? [H, ...DigitsToDigitArray<L>] : []
+type StringLengthEquals<N extends string, M extends string> = N extends `${string}${infer NL}`
+  ? M extends `${string}${infer ML}`
+    ? StringLengthEquals<NL, ML>
+    : false
+  : M extends ''
+    ? true
+    : false
 
 /**
  * @example
- * DigitArrayLessThan<['1', '2', '3'], ['4', '5']> // false
- * DigitArrayLessThan<['1', '2', '3'], ['4', '5', '6']> // true
+ * StringLengthLessThan<'1', '11'> // true
+ * StringLengthLessThan<'11', '1'> // false
+ * StringLengthLessThan<'11', '11'> // false
  */
-type DigitArrayLessThan<N extends readonly Digit[], M extends readonly Digit[]> = Equals<N['length'], M['length']> extends true
-  ? SameLengthDigitArrayLessThan<N, M>
-  : DigitArrayLessThan<DigitsToDigitArray<`${N['length']}`>, DigitsToDigitArray<`${M['length']}`>>
+type StringLengthLessThan<N extends string, M extends string> = N extends `${string}${infer NL}`
+  ? M extends `${string}${infer ML}`
+    ? StringLengthLessThan<NL, ML>
+    : false
+  : M extends ''
+    ? false
+    : true
 
-type SameLengthDigitArrayLessThan<N extends readonly Digit[], M extends readonly Digit[]> = [N, M] extends [
-  [infer NH extends Digit, ...infer NT extends Digit[]],
-  [infer MH extends Digit, ...infer MT extends Digit[]],
+/**
+ * Returns true if N < M.
+ * N and M must have the same number of digits.
+ * @example
+ * SameLengthDigitsLessThan<'123', '456> // true
+ */
+type SameLengthDigitsLessThan<N extends string, M extends string> = [N, M] extends [
+  `${infer NH extends Digit}${infer NL}`,
+  `${infer MH extends Digit}${infer ML}`,
 ]
   ? Equals<NH, MH> extends true
-    ? SameLengthDigitArrayLessThan<NT, MT>
+    ? SameLengthDigitsLessThan<NL, ML>
     : DigitLessThan<NH, MH>
   : false
 

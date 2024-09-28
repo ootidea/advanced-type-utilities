@@ -4,7 +4,7 @@ import type { NumberOrderRankOf } from '../number-processing/NumberOrderRankOf'
 import { assertTypeEquality, describe, it, test } from '../testUtilities'
 import type { Equals } from '../type-level-predicate/Equals'
 import type { AfterDecimalPointDigitsLessThan } from './AfterDecimalPointDigitsLessThan'
-import type { DigitLessThan, DigitsLessThan } from './DigitArrayLessThan'
+import type { DigitLessThan, DigitsLessThan } from './DigitsLessThan'
 
 export type NumberLessThan<N extends number, M extends number> = N extends N
   ? M extends M
