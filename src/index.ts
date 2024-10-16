@@ -25,6 +25,7 @@ export type { Writable } from './object-manipulation/Writable'
 export type { RepeatString } from './string-processing/RepeatString'
 
 export type { LiteralToPrimitive } from './type-conversion/LiteralToPrimitive'
+export type { TupleToIntersection } from './type-conversion/TupleToIntersection'
 export type { UnionToIntersection } from './type-conversion/UnionToIntersection'
 
 export type { Equals } from './type-level-predicate/Equals'
