@@ -5,6 +5,7 @@ export type { Not } from './boolean-operators/Not'
 
 export type { Digit } from './common-type-alias/Digit'
 export type { Infinity } from './common-type-alias/Infinity'
+export type { JsonValue } from './common-type-alias/JsonValue'
 export type { NegativeInfinity } from './common-type-alias/NegativeInfinity'
 export type { nullish } from './common-type-alias/nullish'
 export type { TypedArray } from './common-type-alias/TypedArray'
