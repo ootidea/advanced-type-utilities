@@ -1,5 +1,7 @@
+export type { DescendingSequentialNumbersThrough } from './array-generation/DescendingSequentialNumbersThrough'
 export type { FixedLengthArray } from './array-generation/FixedLengthArray'
 export type { NonEmptyArray } from './array-generation/NonEmptyArray'
+export type { SequentialNumbersThrough } from './array-generation/SequentialNumbersThrough'
 
 export type { Not } from './boolean-operators/Not'
 
