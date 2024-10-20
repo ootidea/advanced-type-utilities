@@ -16,6 +16,7 @@ export type { BigintLessThan } from './number-comparison/BigintLessThan'
 export type { NumberLessThan } from './number-comparison/NumberLessThan'
 export type { SortNumbers } from './number-comparison/SortNumbers'
 
+export type { IntegerRangeBetween } from './number-processing/IntegerRangeBetween'
 export type { NumberOrderRankOf } from './number-processing/NumberOrderRankOf'
 
 export type { MakeOptionalPropertiesAcceptUndefined } from './object-manipulation/MakeOptionalPropertiesAcceptUndefined'
