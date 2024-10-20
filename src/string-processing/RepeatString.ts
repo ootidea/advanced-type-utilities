@@ -29,7 +29,7 @@ it('distributes over union types', () => {
   assertTypeEquality<RepeatString<any, 2>, string>()
   assertTypeEquality<RepeatString<never, 2>, never>()
 })
-it('returns the string type for a huge number', () => {
+it('returns the string type for a natural number in exponential notation', () => {
   assertTypeEquality<RepeatString<'a', 1e21>, string>()
 })
 it('returns never type if the given number is not a natural number', () => {

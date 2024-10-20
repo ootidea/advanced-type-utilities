@@ -31,7 +31,7 @@ it('returns never type for non-natural numbers', () => {
   assertTypeEquality<FixedLengthArray<-1e-21>, never>()
   assertTypeEquality<FixedLengthArray<Infinity>, never>()
 })
-it('returns an array type for a huge number', () => {
+it('returns an array type for a natural number in exponential notation', () => {
   assertTypeEquality<FixedLengthArray<1e21>, unknown[]>()
 })
 it('distributes over union types', () => {

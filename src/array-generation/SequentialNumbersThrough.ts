@@ -1,12 +1,17 @@
 import type { Infinity } from '../common-type-alias/Infinity'
 import { assertTypeEquality, it } from '../testUtilities'
+import type { IsNaturalNumber } from '../type-level-predicate/IsNaturalNumber'
 import type { FixedLengthArray } from './FixedLengthArray'
 
 export type SequentialNumbersThrough<N extends number> = number extends N
   ? number[]
-  : [unknown, ...FixedLengthArray<N>] extends infer R extends readonly unknown[]
-    ? { [K in keyof R]: K extends `${infer M extends number}` ? M : never }
-    : never
+  : IsNaturalNumber<N> extends false
+    ? never
+    : `${N}` extends `${string}e+${string}`
+      ? number[]
+      : [unknown, ...FixedLengthArray<N>] extends infer R extends readonly unknown[]
+        ? { [K in keyof R]: K extends `${infer M extends number}` ? M : never }
+        : never
 
 it('generates an array of sequential numbers through a given number', () => {
   assertTypeEquality<SequentialNumbersThrough<0>, [0]>()
@@ -30,4 +35,7 @@ it('returns never type for non-natural numbers', () => {
   assertTypeEquality<SequentialNumbersThrough<1e-21>, never>()
   assertTypeEquality<SequentialNumbersThrough<-1e-21>, never>()
   assertTypeEquality<SequentialNumbersThrough<Infinity>, never>()
+})
+it('returns the number array type for a natural number in exponential notation', () => {
+  assertTypeEquality<SequentialNumbersThrough<1e21>, number[]>()
 })

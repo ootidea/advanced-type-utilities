@@ -7,9 +7,11 @@ export type DescendingSequentialNumbersThrough<N extends number> = number extend
   ? number[]
   : IsNaturalNumber<N> extends false
     ? never
-    : DescendingSequentialDigitsesThrough<`${N}`> extends infer R extends readonly string[]
-      ? { [K in keyof R]: R[K] extends `${infer M extends number}` ? M : never }
-      : never
+    : `${N}` extends `${string}e+${string}`
+      ? number[]
+      : DescendingSequentialDigitsesThrough<`${N}`> extends infer R extends readonly string[]
+        ? { [K in keyof R]: R[K] extends `${infer M extends number}` ? M : never }
+        : never
 
 it('generates an array type of sequential numbers descending from a given number to 0', () => {
   assertTypeEquality<DescendingSequentialNumbersThrough<0>, [0]>()
@@ -36,6 +38,9 @@ it('returns never type for non-natural numbers', () => {
   assertTypeEquality<DescendingSequentialNumbersThrough<1e-21>, never>()
   assertTypeEquality<DescendingSequentialNumbersThrough<-1e-21>, never>()
   assertTypeEquality<DescendingSequentialNumbersThrough<Infinity>, never>()
+})
+it('returns the number array type for a natural number in exponential notation', () => {
+  assertTypeEquality<DescendingSequentialNumbersThrough<1e21>, number[]>()
 })
 
 /**
