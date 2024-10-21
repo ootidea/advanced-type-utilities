@@ -32,6 +32,7 @@ export type { RepeatString } from './string-processing/RepeatString'
 export type { LiteralToPrimitive } from './type-conversion/LiteralToPrimitive'
 export type { TupleToIntersection } from './type-conversion/TupleToIntersection'
 export type { UnionToIntersection } from './type-conversion/UnionToIntersection'
+export type { UnionToTuple } from './type-conversion/UnionToTuple'
 
 export type { Equals } from './type-level-predicate/Equals'
 export type { IsInteger } from './type-level-predicate/IsInteger'
