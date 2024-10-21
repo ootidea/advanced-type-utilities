@@ -1,6 +1,6 @@
+export type { ArrayWithExactLength } from './array-generation/ArrayWithExactLength'
+export type { ArrayWithMinLength } from './array-generation/ArrayWithMinLength'
 export type { DescendingSequentialNumbersThrough } from './array-generation/DescendingSequentialNumbersThrough'
-export type { FixedLengthArray } from './array-generation/FixedLengthArray'
-export type { MinLengthArray } from './array-generation/MinLengthArray'
 export type { NonEmptyArray } from './array-generation/NonEmptyArray'
 export type { SequentialNumbersThrough } from './array-generation/SequentialNumbersThrough'
 

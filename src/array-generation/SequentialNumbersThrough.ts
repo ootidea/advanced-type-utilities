@@ -1,7 +1,7 @@
 import type { Infinity } from '../common-type-alias/Infinity'
 import { assertTypeEquality, it } from '../testUtilities'
 import type { IsNaturalNumber } from '../type-level-predicate/IsNaturalNumber'
-import type { FixedLengthArray } from './FixedLengthArray'
+import type { ArrayWithExactLength } from './ArrayWithExactLength'
 
 export type SequentialNumbersThrough<N extends number> = number extends N
   ? number[]
@@ -9,7 +9,7 @@ export type SequentialNumbersThrough<N extends number> = number extends N
     ? never
     : `${N}` extends `${string}e+${string}`
       ? number[]
-      : [unknown, ...FixedLengthArray<N>] extends infer R extends readonly unknown[]
+      : [unknown, ...ArrayWithExactLength<N>] extends infer R extends readonly unknown[]
         ? { [K in keyof R]: K extends `${infer M extends number}` ? M : never }
         : never
 
