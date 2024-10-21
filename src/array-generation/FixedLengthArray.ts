@@ -1,17 +1,20 @@
 import type { Digit } from '../common-type-alias/Digit'
 import type { Infinity } from '../common-type-alias/Infinity'
+import type { NegativeInfinity } from '../common-type-alias/NegativeInfinity'
 import { assertTypeEquality, it } from '../testUtilities'
 import type { IsNaturalNumber } from '../type-level-predicate/IsNaturalNumber'
 
-export type FixedLengthArray<N extends number, T = unknown> = N extends N
-  ? number extends N
-    ? T[]
-    : IsNaturalNumber<N> extends false
+export type FixedLengthArray<N extends number, T = unknown> = number extends N
+  ? T[]
+  : N extends N
+    ? `${N}` extends `-${string}`
       ? never
-      : `${N}` extends `${string}e+${string}`
+      : IsNaturalNumber<N> extends false
         ? T[]
-        : DigitsToFixedLengthArray<`${N}`, T>
-  : never
+        : `${N}` extends `${string}e+${string}`
+          ? T[]
+          : DigitsToFixedLengthArray<`${N}`, T>
+    : never // Unreachable
 
 it('generates an array type with the specified length', () => {
   assertTypeEquality<FixedLengthArray<0>, []>()
@@ -22,17 +25,20 @@ it('allows specifying the element type with the second argument', () => {
   assertTypeEquality<FixedLengthArray<3, bigint>, [bigint, bigint, bigint]>()
   assertTypeEquality<FixedLengthArray<0, string>, []>()
 })
-it('returns never type for non-natural numbers', () => {
-  assertTypeEquality<FixedLengthArray<0.5>, never>()
+it('returns never type for negative numbers', () => {
   assertTypeEquality<FixedLengthArray<-1>, never>()
   assertTypeEquality<FixedLengthArray<-1.5>, never>()
   assertTypeEquality<FixedLengthArray<-1e21>, never>()
-  assertTypeEquality<FixedLengthArray<1e-21>, never>()
   assertTypeEquality<FixedLengthArray<-1e-21>, never>()
-  assertTypeEquality<FixedLengthArray<Infinity>, never>()
+  assertTypeEquality<FixedLengthArray<NegativeInfinity>, never>()
 })
-it('returns an array type for a natural number in exponential notation', () => {
+it('returns a normal array type for a natural number in exponential notation', () => {
   assertTypeEquality<FixedLengthArray<1e21>, unknown[]>()
+})
+it('returns a normal array type for other numbers', () => {
+  assertTypeEquality<FixedLengthArray<0.5>, unknown[]>()
+  assertTypeEquality<FixedLengthArray<1e-21>, unknown[]>()
+  assertTypeEquality<FixedLengthArray<Infinity>, unknown[]>()
 })
 it('distributes over union types', () => {
   assertTypeEquality<FixedLengthArray<0 | 1>, [] | [unknown]>()
