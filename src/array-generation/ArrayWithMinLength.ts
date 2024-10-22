@@ -28,11 +28,11 @@ it('allows specifying the element type with the second argument', () => {
   assertTypeEquality<ArrayWithMinLength<1, boolean>, [boolean, ...boolean[]] | [...boolean[], boolean]>()
   assertTypeEquality<ArrayWithMinLength<2, any>, [any, any, ...any[]] | [any, ...any[], any] | [...any[], any, any]>()
 })
-it('returns never type for negative numbers', () => {
+it('returns the never type for negative numbers', () => {
   assertTypeEquality<ArrayWithMinLength<-1>, never>()
   assertTypeEquality<ArrayWithMinLength<NegativeInfinity>, never>()
 })
-it('returns a regular array type for a natural number in exponential notation', () => {
+it('returns a regular array type for natural numbers in exponential notation', () => {
   assertTypeEquality<ArrayWithMinLength<1e21>, unknown[]>()
   assertTypeEquality<ArrayWithMinLength<1.5e21>, unknown[]>()
 })

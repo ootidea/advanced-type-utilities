@@ -25,14 +25,14 @@ it('allows specifying the element type with the second argument', () => {
   assertTypeEquality<ArrayWithExactLength<3, bigint>, [bigint, bigint, bigint]>()
   assertTypeEquality<ArrayWithExactLength<0, string>, []>()
 })
-it('returns never type for negative numbers', () => {
+it('returns the never type for negative numbers', () => {
   assertTypeEquality<ArrayWithExactLength<-1>, never>()
   assertTypeEquality<ArrayWithExactLength<-1.5>, never>()
   assertTypeEquality<ArrayWithExactLength<-1e21>, never>()
   assertTypeEquality<ArrayWithExactLength<-1e-21>, never>()
   assertTypeEquality<ArrayWithExactLength<NegativeInfinity>, never>()
 })
-it('returns a regular array type for a natural number in exponential notation', () => {
+it('returns a regular array type for natural numbers in exponential notation', () => {
   assertTypeEquality<ArrayWithExactLength<1e21>, unknown[]>()
 })
 it('returns a regular array type for other numbers', () => {

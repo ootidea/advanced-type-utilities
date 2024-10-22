@@ -25,7 +25,7 @@ it('generates an array type of sequential numbers descending from a given number
   >()
   assertTypeEquality<DescendingSequentialNumbersThrough<999>['length'], 1000>()
 })
-it('returns never type for negative numbers', () => {
+it('returns the never type for negative numbers', () => {
   assertTypeEquality<DescendingSequentialNumbersThrough<-1>, never>()
   assertTypeEquality<DescendingSequentialNumbersThrough<-1.5>, never>()
   assertTypeEquality<DescendingSequentialNumbersThrough<-1e21>, never>()
@@ -36,7 +36,7 @@ it('ignores fractional parts of given numbers', () => {
   assertTypeEquality<DescendingSequentialNumbersThrough<1.5>, [1, 0]>()
   assertTypeEquality<DescendingSequentialNumbersThrough<1e-21>, [0]>()
 })
-it('returns the regular number array type for a natural number in exponential notation', () => {
+it('returns the regular number array type for natural numbers in exponential notation', () => {
   assertTypeEquality<DescendingSequentialNumbersThrough<1e21>, number[]>()
 })
 it('returns the regular number array type for Infinity', () => {
