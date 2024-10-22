@@ -2,6 +2,14 @@ import type { CopyArrayWritability } from '@/array-manipulation/CopyArrayWritabi
 import { assertTypeEquality, it, test } from '@/testUtilities'
 import type { Equals } from '@/type-level-predicate/Equals'
 
+/**
+ * Removes all elements from the tuple that are equal to the given type.
+ * Time complexity: O(n), where n is the number of elements in the tuple.
+ * @example
+ * RemoveAll<[number, string], string> // [number]
+ * RemoveAll<['a', 'b', 'a'], 'a'> // ['b']
+ * RemoveAll<[1, 2, 3], any> // [1, 2, 3]
+ */
 export type RemoveAll<T extends readonly unknown[], E> = Equals<T, any> extends true
   ? any
   : CopyArrayWritability<T, RemoveAllIgnoringReadonlyModifier<T, E>>
