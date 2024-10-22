@@ -2,6 +2,8 @@ import type { Digit } from '@/common-type-alias/Digit'
 import type { Equals } from '@/type-level-predicate/Equals'
 
 /**
+ * Checks if N < M for natural numbers in string format.
+ * Time complexity: O(n), where n is the minimum of the lengths of N and M.
  * @example
  * DigitsLessThan<'123', '456'> // true
  * DigitsLessThan<'123', '123'> // false

@@ -16,6 +16,8 @@ assertTypeEquality<SortNumbers<[3, 2, 1]>, [1, 2, 3]>()
 
 assertTypeEquality<SortNumbers<[3, 1, 4, 1, 5]>, [1, 1, 3, 4, 5]>()
 
+// TODO: Add more test cases
+
 type MergeSort<L extends readonly (readonly number[])[]> = L extends readonly [
   infer E1 extends readonly number[],
   infer E2 extends readonly number[],

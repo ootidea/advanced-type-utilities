@@ -1,6 +1,14 @@
 import type { DigitsLessThan } from '@/number-comparison/DigitsLessThan'
 import { assertTypeEquality, it, test } from '@/testUtilities'
 
+/**
+ * Checks if N < M for bigint values.
+ * Time complexity: O(n), where n is the minimum of the number of digits in N and M.
+ * @example
+ * BigintLessThan<1n, 2n> // true
+ * BigintLessThan<2n, -1n> // false
+ * BigintLessThan<0n, 0n> // false
+ */
 export type BigintLessThan<N extends bigint, M extends bigint> = N extends N
   ? M extends M
     ? bigint extends N

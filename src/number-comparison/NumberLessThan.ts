@@ -6,6 +6,15 @@ import type { NumberOrderRankOf } from '@/number-processing/NumberOrderRankOf'
 import { assertTypeEquality, describe, it, test } from '@/testUtilities'
 import type { Equals } from '@/type-level-predicate/Equals'
 
+/**
+ * Checks if N < M.
+ * Time complexity: O(n), where n is the minimum of the number of digits in N and M.
+ * @example
+ * NumberLessThan<1, 2> // true
+ * NumberLessThan<2, 1> // false
+ * NumberLessThan<0, 0> // false
+ * NumberLessThan<-0.5, 1e21> // true
+ */
 export type NumberLessThan<N extends number, M extends number> = N extends N
   ? M extends M
     ? number extends N

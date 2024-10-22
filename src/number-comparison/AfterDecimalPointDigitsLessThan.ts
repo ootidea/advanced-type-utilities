@@ -3,6 +3,7 @@ import type { DigitLessThan } from '@/number-comparison/DigitsLessThan'
 import { assertTypeEquality } from '@/testUtilities'
 import type { Equals } from '@/type-level-predicate/Equals'
 
+/** Time complexity: O(n), where n is the minimum of the lengths of N and M. */
 export type AfterDecimalPointDigitsLessThan<N extends string, M extends string> = N extends `${infer NH extends Digit}${infer NL}`
   ? M extends `${infer MH extends Digit}${infer ML}`
     ? Equals<NH, MH> extends true
