@@ -21,6 +21,7 @@ export type { SortNumbers } from '@/number-comparison/SortNumbers'
 
 export type { IntegerRangeBetween } from '@/number-processing/IntegerRangeBetween'
 export type { NumberOrderRankOf } from '@/number-processing/NumberOrderRankOf'
+export type { Trunc } from '@/number-processing/Trunc'
 
 export type { MakeOptionalPropertiesAcceptUndefined } from '@/object-manipulation/MakeOptionalPropertiesAcceptUndefined'
 export type { MergeIntersection } from '@/object-manipulation/MergeIntersection'
