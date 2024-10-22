@@ -4,6 +4,8 @@ export type { DescendingSequentialNumbersThrough } from '@/array-generation/Desc
 export type { NonEmptyArray } from '@/array-generation/NonEmptyArray'
 export type { SequentialNumbersThrough } from '@/array-generation/SequentialNumbersThrough'
 
+export type { RemoveAll } from '@/array-manipulation/RemoveAll'
+
 export type { Not } from '@/boolean-operators/Not'
 
 export type { Digit } from '@/common-type-alias/Digit'
