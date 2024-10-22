@@ -38,5 +38,6 @@ export type { Equals } from '@/type-level-predicate/Equals'
 export type { IsInteger } from '@/type-level-predicate/IsInteger'
 export type { IsNaturalNumber } from '@/type-level-predicate/IsNaturalNumber'
 export type { IsOneOf } from '@/type-level-predicate/IsOneOf'
+export type { IsTuple } from '@/type-level-predicate/IsTuple'
 
 export type { LiteralAutoComplete } from '@/LiteralAutoComplete'
