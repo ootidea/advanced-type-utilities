@@ -1,22 +1,41 @@
 import type { Digit } from '@/common-type-alias/Digit'
 import type { Infinity } from '@/common-type-alias/Infinity'
+import type { NegativeInfinity } from '@/common-type-alias/NegativeInfinity'
+import type { Trunc } from '@/number-processing/Trunc'
 import { assertTypeEquality, it } from '@/testUtilities'
-import type { IsNaturalNumber } from '@/type-level-predicate/IsNaturalNumber'
 
 export type RepeatString<S extends string, N extends number> = number extends N
   ? string
-  : IsNaturalNumber<N> extends false
+  : `${N}` extends `-${string}`
     ? never
-    : `${N}` extends `${string}e+${string}`
+    : `${N}` extends `${string}e+${string}` | 'Infinity'
       ? string
       : string extends S
         ? string
-        : RepeatStringDigits<S, `${N}`>
+        : RepeatStringDigits<S, `${Trunc<N>}`>
 
-it('returns a string literal type that repeats the given string a specified number of times', () => {
+it('generates a string literal type by repeating the given string the specified number of times', () => {
   assertTypeEquality<RepeatString<'a', 2>, 'aa'>()
   assertTypeEquality<RepeatString<'a', 0>, ''>()
   assertTypeEquality<RepeatString<'abc', 2>, 'abcabc'>()
+  assertTypeEquality<RepeatString<`${number}`, 2>, `${number}${number}`>()
+})
+it('returns the never type for negative numbers', () => {
+  assertTypeEquality<RepeatString<'a', -1>, never>()
+  assertTypeEquality<RepeatString<'a', -0.5>, never>()
+  assertTypeEquality<RepeatString<'a', -1e21>, never>()
+  assertTypeEquality<RepeatString<'a', -1e-21>, never>()
+  assertTypeEquality<RepeatString<'a', NegativeInfinity>, never>()
+})
+it('ignores fractional parts of given numbers', () => {
+  assertTypeEquality<RepeatString<'a', 2.5>, 'aa'>()
+  assertTypeEquality<RepeatString<'a', 1e-21>, ''>()
+})
+it('returns the regular string type for natural numbers in exponential notation', () => {
+  assertTypeEquality<RepeatString<'a', 1e21>, string>()
+})
+it('returns the regular string type for Infinity', () => {
+  assertTypeEquality<RepeatString<'a', Infinity>, string>()
 })
 it('distributes over union types', () => {
   assertTypeEquality<RepeatString<'a', 1 | 2>, 'a' | 'aa'>()
@@ -28,15 +47,6 @@ it('distributes over union types', () => {
   assertTypeEquality<RepeatString<string, 2>, string>()
   assertTypeEquality<RepeatString<any, 2>, string>()
   assertTypeEquality<RepeatString<never, 2>, never>()
-})
-it('returns the string type for a natural number in exponential notation', () => {
-  assertTypeEquality<RepeatString<'a', 1e21>, string>()
-})
-it('returns never type if the given number is not a natural number', () => {
-  assertTypeEquality<RepeatString<'a', -1>, never>()
-  assertTypeEquality<RepeatString<'a', 1.5>, never>()
-  assertTypeEquality<RepeatString<'a', 1e-21>, never>()
-  assertTypeEquality<RepeatString<'a', Infinity>, never>()
 })
 
 type RepeatStringDigits<S extends string, N extends string, Acc extends string = ''> = N extends `${infer H extends Digit}${infer L}`
