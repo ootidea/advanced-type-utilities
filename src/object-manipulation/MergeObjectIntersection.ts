@@ -1,6 +1,7 @@
 import { assertTypeEquality, assertTypeInequality, it } from '@/testUtilities'
+import type { Equals } from '@/type-level-predicate/Equals'
 
-export type MergeObjectIntersection<T> = T extends object ? { [K in keyof T]: T[K] } : T
+export type MergeObjectIntersection<T extends object> = Equals<T, any> extends true ? any : { [K in keyof T]: T[K] }
 
 it('merges intersections of object types', () => {
   assertTypeEquality<MergeObjectIntersection<{ a: 1 } & { b: 2 }>, { a: 1; b: 2 }>()
@@ -19,7 +20,6 @@ it('drops construct signatures', () => {
   assertTypeEquality<MergeObjectIntersection<new (x: number) => 2>, {}>()
 })
 it('distributes over union types', () => {
-  assertTypeEquality<MergeObjectIntersection<string | ({ b: 2 } & { c: 3 })>, string | { b: 2; c: 3 }>()
   assertTypeEquality<MergeObjectIntersection<{ a: 1 } | ({ b: 2 } & { c: 3 })>, { a: 1 } | { b: 2; c: 3 }>()
 })
 it('merges {} type with primitive types into mysterious types', () => {
@@ -33,7 +33,5 @@ it('does not merge intersections in nested types (except unions)', () => {
 })
 it('preserves special types as-is', () => {
   assertTypeEquality<MergeObjectIntersection<any>, any>()
-  assertTypeEquality<MergeObjectIntersection<unknown>, unknown>()
   assertTypeEquality<MergeObjectIntersection<never>, never>()
-  assertTypeEquality<MergeObjectIntersection<null>, null>()
 })
