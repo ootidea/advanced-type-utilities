@@ -1,7 +1,7 @@
-import type { MergeIntersection } from '@/object-manipulation/MergeIntersection'
+import type { MergeObjectIntersection } from '@/object-manipulation/MergeObjectIntersection'
 import { assertTypeEquality, it } from '@/testUtilities'
 
-export type OverwriteProperties<T, V> = MergeIntersection<Omit<T, keyof V> & V>
+export type OverwriteProperties<T, V> = MergeObjectIntersection<Omit<T, keyof V> & V>
 
 it('overwrites existing properties', () => {
   assertTypeEquality<OverwriteProperties<{ a: 1; b: 2 }, { b: 9 }>, { a: 1; b: 9 }>()
