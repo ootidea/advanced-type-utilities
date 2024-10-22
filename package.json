@@ -20,7 +20,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc --declaration --declarationDir dist --emitDeclarationOnly",
+    "build": "rimraf dist && tsc && tsc-alias",
     "fix": "run-p \"fix:*\"",
     "fix:biome": "biome check --write",
     "fix:package-json": "sort-package-json",
@@ -36,6 +36,7 @@
     "npm-run-all2": "^6.2.3",
     "rimraf": "^6.0.1",
     "sort-package-json": "^2.10.1",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.6.2"
   },
   "packageManager": "pnpm@9.10.0"
