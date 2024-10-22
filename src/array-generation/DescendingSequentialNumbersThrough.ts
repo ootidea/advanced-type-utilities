@@ -1,15 +1,16 @@
 import type { Digit } from '@/common-type-alias/Digit'
 import type { Infinity } from '@/common-type-alias/Infinity'
+import type { NegativeInfinity } from '@/common-type-alias/NegativeInfinity'
+import type { Trunc } from '@/number-processing/Trunc'
 import { assertTypeEquality, it } from '@/testUtilities'
-import type { IsNaturalNumber } from '@/type-level-predicate/IsNaturalNumber'
 
 export type DescendingSequentialNumbersThrough<N extends number> = number extends N
   ? number[]
-  : IsNaturalNumber<N> extends false
+  : `${N}` extends `-${string}`
     ? never
-    : `${N}` extends `${string}e+${string}`
+    : `${N}` extends `${string}e+${string}` | 'Infinity'
       ? number[]
-      : DescendingSequentialDigitsesThrough<`${N}`> extends infer R extends readonly string[]
+      : DescendingSequentialDigitsesThrough<`${Trunc<N>}`> extends infer R extends readonly string[]
         ? { [K in keyof R]: R[K] extends `${infer M extends number}` ? M : never }
         : never
 
@@ -24,23 +25,28 @@ it('generates an array type of sequential numbers descending from a given number
   >()
   assertTypeEquality<DescendingSequentialNumbersThrough<999>['length'], 1000>()
 })
+it('returns never type for negative numbers', () => {
+  assertTypeEquality<DescendingSequentialNumbersThrough<-1>, never>()
+  assertTypeEquality<DescendingSequentialNumbersThrough<-1.5>, never>()
+  assertTypeEquality<DescendingSequentialNumbersThrough<-1e21>, never>()
+  assertTypeEquality<DescendingSequentialNumbersThrough<-1e-21>, never>()
+  assertTypeEquality<DescendingSequentialNumbersThrough<NegativeInfinity>, never>()
+})
+it('ignores fractional parts of given numbers', () => {
+  assertTypeEquality<DescendingSequentialNumbersThrough<1.5>, [1, 0]>()
+  assertTypeEquality<DescendingSequentialNumbersThrough<1e-21>, [0]>()
+})
+it('returns the regular number array type for a natural number in exponential notation', () => {
+  assertTypeEquality<DescendingSequentialNumbersThrough<1e21>, number[]>()
+})
+it('returns the regular number array type for Infinity', () => {
+  assertTypeEquality<DescendingSequentialNumbersThrough<Infinity>, number[]>()
+})
 it('distributes over union types', () => {
   assertTypeEquality<DescendingSequentialNumbersThrough<0 | 1>, [0] | [1, 0]>()
   assertTypeEquality<DescendingSequentialNumbersThrough<never>, never>()
   assertTypeEquality<DescendingSequentialNumbersThrough<number>, number[]>()
   assertTypeEquality<DescendingSequentialNumbersThrough<any>, number[]>()
-})
-it('returns never type for non-natural numbers', () => {
-  assertTypeEquality<DescendingSequentialNumbersThrough<0.5>, never>()
-  assertTypeEquality<DescendingSequentialNumbersThrough<-1>, never>()
-  assertTypeEquality<DescendingSequentialNumbersThrough<-1.5>, never>()
-  assertTypeEquality<DescendingSequentialNumbersThrough<-1e21>, never>()
-  assertTypeEquality<DescendingSequentialNumbersThrough<1e-21>, never>()
-  assertTypeEquality<DescendingSequentialNumbersThrough<-1e-21>, never>()
-  assertTypeEquality<DescendingSequentialNumbersThrough<Infinity>, never>()
-})
-it('returns the number array type for a natural number in exponential notation', () => {
-  assertTypeEquality<DescendingSequentialNumbersThrough<1e21>, number[]>()
 })
 
 /**
