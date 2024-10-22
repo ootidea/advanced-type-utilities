@@ -32,11 +32,11 @@ it('returns never type for negative numbers', () => {
   assertTypeEquality<ArrayWithMinLength<-1>, never>()
   assertTypeEquality<ArrayWithMinLength<NegativeInfinity>, never>()
 })
-it('returns a normal array type for a natural number in exponential notation', () => {
+it('returns a regular array type for a natural number in exponential notation', () => {
   assertTypeEquality<ArrayWithMinLength<1e21>, unknown[]>()
   assertTypeEquality<ArrayWithMinLength<1.5e21>, unknown[]>()
 })
-it('returns a normal array type for other numbers', () => {
+it('returns a regular array type for other numbers', () => {
   assertTypeEquality<ArrayWithMinLength<0.5>, unknown[]>()
   assertTypeEquality<ArrayWithMinLength<1e-21>, unknown[]>()
   assertTypeEquality<ArrayWithMinLength<Infinity>, unknown[]>()
