@@ -1,4 +1,4 @@
-import { assertTypeEquality } from '../testUtilities'
+import { assertTypeEquality } from '@/testUtilities'
 
 export type TupleToIntersection<T extends readonly unknown[]> = { [K in keyof T]: (value: T[K]) => any }[number] extends (
   value: infer R,

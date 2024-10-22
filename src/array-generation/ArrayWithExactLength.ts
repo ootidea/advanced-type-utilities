@@ -1,8 +1,8 @@
-import type { Digit } from '../common-type-alias/Digit'
-import type { Infinity } from '../common-type-alias/Infinity'
-import type { NegativeInfinity } from '../common-type-alias/NegativeInfinity'
-import { assertTypeEquality, it } from '../testUtilities'
-import type { IsNaturalNumber } from '../type-level-predicate/IsNaturalNumber'
+import type { Digit } from '@/common-type-alias/Digit'
+import type { Infinity } from '@/common-type-alias/Infinity'
+import type { NegativeInfinity } from '@/common-type-alias/NegativeInfinity'
+import { assertTypeEquality, it } from '@/testUtilities'
+import type { IsNaturalNumber } from '@/type-level-predicate/IsNaturalNumber'
 
 export type ArrayWithExactLength<N extends number, T = unknown> = number extends N
   ? T[]

@@ -1,5 +1,5 @@
-import { assertTypeEquality } from '../testUtilities'
-import type { NumberLessThan } from './NumberLessThan'
+import type { NumberLessThan } from '@/number-comparison/NumberLessThan'
+import { assertTypeEquality } from '@/testUtilities'
 
 export type SortNumbers<N extends readonly number[]> = MergeSort<ToSingleElementArrays<N>>
 

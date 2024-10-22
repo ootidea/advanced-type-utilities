@@ -1,4 +1,4 @@
-import { it } from '../testUtilities'
+import { it } from '@/testUtilities'
 
 export type Equals<T, U> = (<R>() => R extends T ? 1 : 2) extends <R>() => R extends U ? 1 : 2 ? true : false
 

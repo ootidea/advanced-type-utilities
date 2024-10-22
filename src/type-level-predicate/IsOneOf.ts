@@ -1,5 +1,5 @@
-import { assertTypeEquality } from '../testUtilities'
-import type { Equals } from './Equals'
+import { assertTypeEquality } from '@/testUtilities'
+import type { Equals } from '@/type-level-predicate/Equals'
 
 export type IsOneOf<T, U extends readonly unknown[]> = U extends readonly [infer H, ...infer L]
   ? Equals<T, H> extends true

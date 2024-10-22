@@ -1,4 +1,4 @@
-import type { LiteralToPrimitive } from './type-conversion/LiteralToPrimitive'
+import type { LiteralToPrimitive } from '@/type-conversion/LiteralToPrimitive'
 
 /**
  * Enables IDE autocomplete for specific literals while allowing other values of the same primitive type.

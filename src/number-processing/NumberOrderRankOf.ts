@@ -1,6 +1,6 @@
-import type { Infinity } from '../common-type-alias/Infinity'
-import type { NegativeInfinity } from '../common-type-alias/NegativeInfinity'
-import { assertTypeEquality, it } from '../testUtilities'
+import type { Infinity } from '@/common-type-alias/Infinity'
+import type { NegativeInfinity } from '@/common-type-alias/NegativeInfinity'
+import { assertTypeEquality, it } from '@/testUtilities'
 
 /**
  * 9: Infinity

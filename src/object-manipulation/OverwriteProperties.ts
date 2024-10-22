@@ -1,5 +1,5 @@
-import { assertTypeEquality, it } from '../testUtilities'
-import type { MergeIntersection } from './MergeIntersection'
+import type { MergeIntersection } from '@/object-manipulation/MergeIntersection'
+import { assertTypeEquality, it } from '@/testUtilities'
 
 export type OverwriteProperties<T, V> = MergeIntersection<Omit<T, keyof V> & V>
 

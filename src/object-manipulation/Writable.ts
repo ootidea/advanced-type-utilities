@@ -1,4 +1,4 @@
-import { assertTypeEquality, it } from '../testUtilities'
+import { assertTypeEquality, it } from '@/testUtilities'
 
 export type Writable<T> = { -readonly [K in keyof T]: T[K] }
 

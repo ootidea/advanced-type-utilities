@@ -1,7 +1,7 @@
-import type { Digit } from '../common-type-alias/Digit'
-import type { Infinity } from '../common-type-alias/Infinity'
-import { assertTypeEquality, it } from '../testUtilities'
-import type { IsNaturalNumber } from '../type-level-predicate/IsNaturalNumber'
+import type { Digit } from '@/common-type-alias/Digit'
+import type { Infinity } from '@/common-type-alias/Infinity'
+import { assertTypeEquality, it } from '@/testUtilities'
+import type { IsNaturalNumber } from '@/type-level-predicate/IsNaturalNumber'
 
 export type RepeatString<S extends string, N extends number> = number extends N
   ? string

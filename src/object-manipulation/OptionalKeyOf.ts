@@ -1,5 +1,5 @@
-import { assertTypeEquality, it } from '../testUtilities'
-import type { ValueOf } from './ValueOf'
+import type { ValueOf } from '@/object-manipulation/ValueOf'
+import { assertTypeEquality, it } from '@/testUtilities'
 
 export type OptionalKeyOf<T> = ValueOf<{
   [K in keyof T as T extends Record<K, T[K]> ? never : K]-?: K

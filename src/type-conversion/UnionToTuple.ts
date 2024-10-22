@@ -1,5 +1,5 @@
-import { assertTypeEquality } from '../testUtilities'
-import type { UnionToIntersection } from './UnionToIntersection'
+import { assertTypeEquality } from '@/testUtilities'
+import type { UnionToIntersection } from '@/type-conversion/UnionToIntersection'
 
 export type UnionToTuple<T> = UnionToIntersection<T extends T ? () => T : never> extends () => infer U
   ? [...UnionToTuple<Exclude<T, U>>, U]

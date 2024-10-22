@@ -1,5 +1,5 @@
-import type { Digit } from '../common-type-alias/Digit'
-import type { Equals } from '../type-level-predicate/Equals'
+import type { Digit } from '@/common-type-alias/Digit'
+import type { Equals } from '@/type-level-predicate/Equals'
 
 /**
  * @example

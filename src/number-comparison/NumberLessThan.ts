@@ -1,10 +1,10 @@
-import type { Infinity } from '../common-type-alias/Infinity'
-import type { NegativeInfinity } from '../common-type-alias/NegativeInfinity'
-import type { NumberOrderRankOf } from '../number-processing/NumberOrderRankOf'
-import { assertTypeEquality, describe, it, test } from '../testUtilities'
-import type { Equals } from '../type-level-predicate/Equals'
-import type { AfterDecimalPointDigitsLessThan } from './AfterDecimalPointDigitsLessThan'
-import type { DigitLessThan, DigitsLessThan } from './DigitsLessThan'
+import type { Infinity } from '@/common-type-alias/Infinity'
+import type { NegativeInfinity } from '@/common-type-alias/NegativeInfinity'
+import type { AfterDecimalPointDigitsLessThan } from '@/number-comparison/AfterDecimalPointDigitsLessThan'
+import type { DigitLessThan, DigitsLessThan } from '@/number-comparison/DigitsLessThan'
+import type { NumberOrderRankOf } from '@/number-processing/NumberOrderRankOf'
+import { assertTypeEquality, describe, it, test } from '@/testUtilities'
+import type { Equals } from '@/type-level-predicate/Equals'
 
 export type NumberLessThan<N extends number, M extends number> = N extends N
   ? M extends M

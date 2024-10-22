@@ -1,4 +1,4 @@
-import { assertTypeEquality, it } from '../testUtilities'
+import { assertTypeEquality, it } from '@/testUtilities'
 
 export type ValueOf<T> = T[keyof T]
 

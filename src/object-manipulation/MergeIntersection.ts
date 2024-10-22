@@ -1,4 +1,4 @@
-import { assertTypeEquality, assertTypeInequality, it } from '../testUtilities'
+import { assertTypeEquality, assertTypeInequality, it } from '@/testUtilities'
 
 export type MergeIntersection<T> = T extends object ? { [K in keyof T]: T[K] } : T
 

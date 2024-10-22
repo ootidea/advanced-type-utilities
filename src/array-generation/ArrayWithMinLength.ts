@@ -1,8 +1,8 @@
-import type { Infinity } from '../common-type-alias/Infinity'
-import type { NegativeInfinity } from '../common-type-alias/NegativeInfinity'
-import type { IntegerRangeBetween } from '../number-processing/IntegerRangeBetween'
-import { assertTypeEquality, it } from '../testUtilities'
-import type { ArrayWithExactLength } from './ArrayWithExactLength'
+import type { ArrayWithExactLength } from '@/array-generation/ArrayWithExactLength'
+import type { Infinity } from '@/common-type-alias/Infinity'
+import type { NegativeInfinity } from '@/common-type-alias/NegativeInfinity'
+import type { IntegerRangeBetween } from '@/number-processing/IntegerRangeBetween'
+import { assertTypeEquality, it } from '@/testUtilities'
 
 export type ArrayWithMinLength<N extends number, T = unknown> = N extends N
   ? `${N}` extends `-${string}`

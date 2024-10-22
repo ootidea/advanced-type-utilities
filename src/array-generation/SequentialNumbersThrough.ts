@@ -1,7 +1,7 @@
-import type { Infinity } from '../common-type-alias/Infinity'
-import { assertTypeEquality, it } from '../testUtilities'
-import type { IsNaturalNumber } from '../type-level-predicate/IsNaturalNumber'
-import type { ArrayWithExactLength } from './ArrayWithExactLength'
+import type { ArrayWithExactLength } from '@/array-generation/ArrayWithExactLength'
+import type { Infinity } from '@/common-type-alias/Infinity'
+import { assertTypeEquality, it } from '@/testUtilities'
+import type { IsNaturalNumber } from '@/type-level-predicate/IsNaturalNumber'
 
 export type SequentialNumbersThrough<N extends number> = number extends N
   ? number[]
