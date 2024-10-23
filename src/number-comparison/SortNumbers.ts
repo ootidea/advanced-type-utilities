@@ -1,6 +1,10 @@
 import type { NumberLessThan } from '@/number-comparison/NumberLessThan'
 import { assertTypeEquality } from '@/testUtilities'
 
+/**
+ * Sorts an array of numbers in ascending order.
+ * Time complexity: O(n log n), where n is the length of the input array.
+ */
 export type SortNumbers<N extends readonly number[]> = MergeSort<ToSingleElementArrays<N>>
 
 assertTypeEquality<SortNumbers<[]>, []>()
@@ -32,9 +36,7 @@ type MergeSort<L extends readonly (readonly number[])[]> = L extends readonly [
  * @example
  * ToSingleElementArrays<[3, 2, 1]> // [[3], [2], [1]]
  */
-type ToSingleElementArrays<N extends readonly number[]> = N extends readonly [infer H extends number, ...infer L extends readonly number[]]
-  ? [[H], ...ToSingleElementArrays<L>]
-  : []
+type ToSingleElementArrays<T extends readonly number[]> = { [K in keyof T]: [T[K]] }
 
 /**
  * Merge two sorted number arrays into one sorted number array.
