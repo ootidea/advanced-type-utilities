@@ -3,16 +3,19 @@ import type { Infinity } from '@/common-type-alias/Infinity'
 import type { NegativeInfinity } from '@/common-type-alias/NegativeInfinity'
 import type { Trunc } from '@/number-processing/Trunc'
 import { assertTypeEquality, it } from '@/testUtilities'
+import type { Equals } from '@/type-level-predicate/Equals'
 
 export type RepeatString<S extends string, N extends number> = number extends N
   ? string
   : `${N}` extends `-${string}`
     ? never
-    : `${N}` extends `${string}e+${string}` | 'Infinity'
-      ? string
-      : string extends S
+    : Equals<S, ''> extends true
+      ? ''
+      : `${N}` extends `${string}e+${string}` | 'Infinity'
         ? string
-        : RepeatStringDigits<S, `${Trunc<N>}`>
+        : string extends S
+          ? string
+          : RepeatStringDigits<S, `${Trunc<N>}`>
 
 it('generates a string literal type by repeating the given string the specified number of times', () => {
   assertTypeEquality<RepeatString<'a', 2>, 'aa'>()
@@ -30,6 +33,10 @@ it('returns the never type for negative numbers', () => {
 it('ignores fractional parts of given numbers', () => {
   assertTypeEquality<RepeatString<'a', 2.5>, 'aa'>()
   assertTypeEquality<RepeatString<'a', 1e-21>, ''>()
+})
+it('returns empty string when repeating empty string', () => {
+  assertTypeEquality<RepeatString<'', 1e21>, ''>()
+  assertTypeEquality<RepeatString<'', Infinity>, ''>()
 })
 it('returns the regular string type for natural numbers in exponential notation', () => {
   assertTypeEquality<RepeatString<'a', 1e21>, string>()
