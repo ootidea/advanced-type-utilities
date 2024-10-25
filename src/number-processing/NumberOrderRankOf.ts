@@ -3,15 +3,18 @@ import type { NegativeInfinity } from '@/common-type-alias/NegativeInfinity'
 import { assertTypeEquality, it } from '@/testUtilities'
 
 /**
+ * Categorizes a number literal type into one of the following categories:
  * 9: Infinity
- * 8: Positive number with positive exponent (e.g., 1e+30)
- * 7: Positive number without exponent
- * 6: Positive number with negative exponent (e.g., 1e-30)
+ * 8: Positive numbers in exponential notation with positive exponents (e.g., 1e+30)
+ * 7: Positive number not in exponential notation (e.g., 1, 0.5)
+ * 6: Positive numbers in exponential notation with negative exponents (e.g., 1e-30)
  * 5: Zero
- * 4: Negative number with negative exponent (e.g., -1e-30)
- * 3: Negative number without exponent
- * 2: Negative number with positive exponent (e.g., -1e+30)
+ * 4: Negative numbers in exponential notation with negative exponents (e.g., -1e-30)
+ * 3: Negative number not in exponential notation (e.g., -1, -0.5)
+ * 2: Negative numbers in exponential notation with positive exponents (e.g., -1e+30)
  * 1: -Infinity
+ *
+ * Time complexity: O(1)
  */
 export type NumberOrderRankOf<T extends number> = T extends T
   ? number extends T
