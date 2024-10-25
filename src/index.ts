@@ -12,6 +12,7 @@ export type { Digit } from '@/common-type-alias/Digit'
 export type { Infinity } from '@/common-type-alias/Infinity'
 export type { JsonValue } from '@/common-type-alias/JsonValue'
 export type { NegativeInfinity } from '@/common-type-alias/NegativeInfinity'
+export type { NonNullish } from '@/common-type-alias/NonNullish'
 export type { nullish } from '@/common-type-alias/nullish'
 export type { TypedArray } from '@/common-type-alias/TypedArray'
 
