@@ -25,6 +25,7 @@ export type { IntegerRangeBetween } from '@/number-processing/IntegerRangeBetwee
 export type { NumberOrderRankOf } from '@/number-processing/NumberOrderRankOf'
 export type { Trunc } from '@/number-processing/Trunc'
 
+export type { FillOptionalNeverProperties } from '@/object-manipulation/FillOptionalNeverProperties'
 export type { MakeOptionalPropertiesAcceptUndefined } from '@/object-manipulation/MakeOptionalPropertiesAcceptUndefined'
 export type { MergeObjectIntersection } from '@/object-manipulation/MergeObjectIntersection'
 export type { OptionalKeyOf } from '@/object-manipulation/OptionalKeyOf'
