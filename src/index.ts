@@ -32,6 +32,7 @@ export type { OverwriteProperties } from '@/object-manipulation/OverwritePropert
 export type { ValueOf } from '@/object-manipulation/ValueOf'
 export type { Writable } from '@/object-manipulation/Writable'
 
+export type { Join } from '@/string-processing/Join'
 export type { RepeatString } from '@/string-processing/RepeatString'
 
 export type { LiteralToPrimitive } from '@/type-conversion/LiteralToPrimitive'
