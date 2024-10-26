@@ -1,3 +1,4 @@
+import type { CopyArrayWritability } from '@/array-manipulation/CopyArrayWritability'
 import type { NumberLessThan } from '@/number-comparison/NumberLessThan'
 import { assertTypeEquality } from '@/testUtilities'
 
@@ -5,7 +6,7 @@ import { assertTypeEquality } from '@/testUtilities'
  * Sorts an array of numbers in ascending order.
  * Time complexity: O(n log n), where n is the length of the input array.
  */
-export type SortNumbers<N extends readonly number[]> = MergeSort<ToSingleElementArrays<N>>
+export type SortNumbers<T extends readonly number[]> = CopyArrayWritability<T, MergeSort<ToSingleElementArrays<T>>>
 
 assertTypeEquality<SortNumbers<[]>, []>()
 assertTypeEquality<SortNumbers<[1]>, [1]>()
@@ -20,12 +21,15 @@ assertTypeEquality<SortNumbers<[3, 2, 1]>, [1, 2, 3]>()
 
 assertTypeEquality<SortNumbers<[3, 1, 4, 1, 5]>, [1, 1, 3, 4, 5]>()
 
+assertTypeEquality<SortNumbers<readonly []>, readonly []>()
+assertTypeEquality<SortNumbers<readonly [2, 1]>, readonly [1, 2]>()
+
 // TODO: Add more test cases
 
 type MergeSort<L extends readonly (readonly number[])[]> = L extends readonly [
-  infer E1 extends readonly number[],
-  infer E2 extends readonly number[],
-  ...infer R extends readonly (readonly number[])[],
+  infer E1 extends number[],
+  infer E2 extends number[],
+  ...infer R extends (readonly number[])[],
 ]
   ? MergeSort<[...R, MergeNumbers<E1, E2>]>
   : L extends readonly [infer E extends readonly number[]]
@@ -45,9 +49,9 @@ type ToSingleElementArrays<T extends readonly number[]> = { [K in keyof T]: [T[K
  */
 type MergeNumbers<T extends readonly number[], U extends readonly number[]> = T extends readonly [
   infer TH extends number,
-  ...infer TL extends readonly number[],
+  ...infer TL extends number[],
 ]
-  ? U extends readonly [infer UH extends number, ...infer UL extends readonly number[]]
+  ? U extends readonly [infer UH extends number, ...infer UL extends number[]]
     ? NumberLessThan<TH, UH> extends true
       ? [TH, ...MergeNumbers<TL, U>]
       : [UH, ...MergeNumbers<T, UL>]
