@@ -56,6 +56,7 @@ it('decrements a negative integer literal type by 1', () => {
   assertTypeEquality<Decrement<-10>, -11>()
 })
 it('decrements a negative decimal number literal type by 1', () => {
+  assertTypeEquality<Decrement<-0.5>, -1.5>()
   assertTypeEquality<Decrement<-1.5>, -2.5>()
   assertTypeEquality<Decrement<-9.5>, -10.5>()
   assertTypeEquality<Decrement<-10.5>, -11.5>()
