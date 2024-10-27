@@ -21,8 +21,10 @@ export type { BigintLessThan } from '@/number-comparison/BigintLessThan'
 export type { NumberLessThan } from '@/number-comparison/NumberLessThan'
 export type { SortNumbers } from '@/number-comparison/SortNumbers'
 
-export type { Negate } from '@/number-processing/Negate'
+export type { Decrement } from '@/number-processing/Decrement'
+export type { Increment } from '@/number-processing/Increment'
 export type { IntegerRangeBetween } from '@/number-processing/IntegerRangeBetween'
+export type { Negate } from '@/number-processing/Negate'
 export type { NumberOrderRankOf } from '@/number-processing/NumberOrderRankOf'
 export type { Trunc } from '@/number-processing/Trunc'
 
