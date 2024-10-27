@@ -21,6 +21,7 @@ export type { BigintLessThan } from '@/number-comparison/BigintLessThan'
 export type { NumberLessThan } from '@/number-comparison/NumberLessThan'
 export type { SortNumbers } from '@/number-comparison/SortNumbers'
 
+export type { Ceil } from '@/number-processing/Ceil'
 export type { Decrement } from '@/number-processing/Decrement'
 export type { Floor } from '@/number-processing/Floor'
 export type { Increment } from '@/number-processing/Increment'

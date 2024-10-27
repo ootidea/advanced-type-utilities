@@ -33,8 +33,8 @@ export type Floor<N extends number> = number extends N
 
 it('truncates the decimal part for positive numbers', () => {
   assertTypeEquality<Floor<0.01>, 0>()
-  assertTypeEquality<Floor<1.01>, 1>()
   assertTypeEquality<Floor<0.99>, 0>()
+  assertTypeEquality<Floor<1.01>, 1>()
   assertTypeEquality<Floor<1.99>, 1>()
 
   assertTypeEquality<Floor<1e-21>, 0>()
