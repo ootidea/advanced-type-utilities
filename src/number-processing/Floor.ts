@@ -31,7 +31,7 @@ export type Floor<N extends number> = number extends N
               : N
     : never // Unreachable
 
-it('removes the fractional part for positive decimal number literal types', () => {
+it('truncates the decimal part for positive numbers', () => {
   assertTypeEquality<Floor<0.01>, 0>()
   assertTypeEquality<Floor<1.01>, 1>()
   assertTypeEquality<Floor<0.99>, 0>()
