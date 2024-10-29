@@ -1,9 +1,8 @@
-import type { ValueOf } from '@/object-manipulation/ValueOf'
 import { assertTypeEquality, it } from '@/testUtilities'
 
-export type OptionalKeyOf<T> = ValueOf<{
-  [K in keyof T as T extends Record<K, T[K]> ? never : K]-?: K
-}>
+export type OptionalKeyOf<T> = keyof {
+  [K in keyof T as T extends Record<K, T[K]> ? never : K]: K
+}
 
 it('extracts optional property keys as a union type from an object type', () => {
   assertTypeEquality<OptionalKeyOf<{ a: 1; b?: 2 }>, 'b'>()
