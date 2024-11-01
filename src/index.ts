@@ -17,8 +17,8 @@ export type { NonNullish } from '@/common-type-alias/NonNullish'
 export type { nullish } from '@/common-type-alias/nullish'
 export type { TypedArray } from '@/common-type-alias/TypedArray'
 
-export type { LessThanForBigint } from '@/number-comparison/LessThanForBigint'
 export type { LessThan } from '@/number-comparison/LessThan'
+export type { LessThanForBigint } from '@/number-comparison/LessThanForBigint'
 export type { SortNumbers } from '@/number-comparison/SortNumbers'
 
 export type { Ceil } from '@/number-processing/Ceil'
@@ -40,6 +40,8 @@ export type { OverwriteProperties } from '@/object-manipulation/OverwritePropert
 export type { ValueOf } from '@/object-manipulation/ValueOf'
 export type { Writable } from '@/object-manipulation/Writable'
 
+export type { LiteralAutoComplete } from '@/other/LiteralAutoComplete'
+
 export type { Join } from '@/string-processing/Join'
 export type { RepeatString } from '@/string-processing/RepeatString'
 
@@ -54,5 +56,3 @@ export type { IsNaturalNumber } from '@/type-level-predicate/IsNaturalNumber'
 export type { IsOneOf } from '@/type-level-predicate/IsOneOf'
 export type { IsTuple } from '@/type-level-predicate/IsTuple'
 export type { IsUnion } from '@/type-level-predicate/IsUnion'
-
-export type { LiteralAutoComplete } from '@/LiteralAutoComplete'
