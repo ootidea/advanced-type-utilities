@@ -1,5 +1,5 @@
 import type { CopyArrayWritability } from '@/array-manipulation/CopyArrayWritability'
-import type { NumberLessThan } from '@/number-comparison/NumberLessThan'
+import type { LessThan } from '@/number-comparison/LessThan'
 import { assertTypeEquality } from '@/testUtilities'
 
 /**
@@ -52,7 +52,7 @@ type MergeNumbers<T extends readonly number[], U extends readonly number[]> = T 
   ...infer TL extends number[],
 ]
   ? U extends readonly [infer UH extends number, ...infer UL extends number[]]
-    ? NumberLessThan<TH, UH> extends true
+    ? LessThan<TH, UH> extends true
       ? [TH, ...MergeNumbers<TL, U>]
       : [UH, ...MergeNumbers<T, UL>]
     : T

@@ -18,7 +18,7 @@ export type { nullish } from '@/common-type-alias/nullish'
 export type { TypedArray } from '@/common-type-alias/TypedArray'
 
 export type { LessThanForBigint } from '@/number-comparison/LessThanForBigint'
-export type { NumberLessThan } from '@/number-comparison/NumberLessThan'
+export type { LessThan } from '@/number-comparison/LessThan'
 export type { SortNumbers } from '@/number-comparison/SortNumbers'
 
 export type { Ceil } from '@/number-processing/Ceil'
