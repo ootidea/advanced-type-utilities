@@ -1,4 +1,4 @@
-import type { DigitsLessThan } from '@/number-comparison/DigitsLessThan'
+import type { LessThanForDigits } from '@/number-comparison/LessThanForDigits'
 import { assertTypeEquality, it, test } from '@/testUtilities'
 
 /**
@@ -17,11 +17,11 @@ export type LessThanForBigint<N extends bigint, M extends bigint> = N extends N
         ? boolean
         : `${N}` extends `-${infer NP}`
           ? `${M}` extends `-${infer MP}`
-            ? DigitsLessThan<MP, NP>
+            ? LessThanForDigits<MP, NP>
             : true
           : `${M}` extends `-${string}`
             ? false
-            : DigitsLessThan<`${N}`, `${M}`>
+            : LessThanForDigits<`${N}`, `${M}`>
     : never
   : never
 

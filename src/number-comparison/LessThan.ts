@@ -1,7 +1,7 @@
 import type { Infinity } from '@/common-type-alias/Infinity'
 import type { NegativeInfinity } from '@/common-type-alias/NegativeInfinity'
-import type { AfterDecimalPointDigitsLessThan } from '@/number-comparison/AfterDecimalPointDigitsLessThan'
-import type { DigitLessThan, DigitsLessThan } from '@/number-comparison/DigitsLessThan'
+import type { LessThanForAfterDecimalPointDigits } from '@/number-comparison/LessThanForAfterDecimalPointDigits'
+import type { LessThanForDigit, LessThanForDigits } from '@/number-comparison/LessThanForDigits'
 import type { NumberOrderRankOf } from '@/number-processing/NumberOrderRankOf'
 import { assertTypeEquality, describe, it, test } from '@/testUtilities'
 import type { Equals } from '@/type-level-predicate/Equals'
@@ -22,7 +22,7 @@ export type LessThan<N extends number, M extends number> = N extends N
       : number extends M
         ? boolean
         : Equals<NumberOrderRankOf<N>, NumberOrderRankOf<M>> extends false
-          ? DigitLessThan<`${NumberOrderRankOf<N>}`, `${NumberOrderRankOf<M>}`>
+          ? LessThanForDigit<`${NumberOrderRankOf<N>}`, `${NumberOrderRankOf<M>}`>
           : N extends NegativeInfinity
             ? false
             : `${N}` extends `-${string}e+${string}`
@@ -32,20 +32,20 @@ export type LessThan<N extends number, M extends number> = N extends N
                 : `${N}` extends `-${infer NI}.${infer NF}`
                   ? `${M}` extends `-${infer MI}.${infer MF}`
                     ? Equals<NI, MI> extends true
-                      ? AfterDecimalPointDigitsLessThan<MF, NF>
-                      : DigitsLessThan<MI, NI>
+                      ? LessThanForAfterDecimalPointDigits<MF, NF>
+                      : LessThanForDigits<MI, NI>
                     : `${M}` extends `-${infer MI}`
                       ? Equals<NI, MI> extends true
                         ? true
-                        : DigitsLessThan<MI, NI>
+                        : LessThanForDigits<MI, NI>
                       : never // Unreachable
                   : `${N}` extends `-${infer NI}`
                     ? `${M}` extends `-${infer MI}.${string}`
                       ? Equals<NI, MI> extends true
                         ? false
-                        : DigitsLessThan<MI, NI>
+                        : LessThanForDigits<MI, NI>
                       : `${M}` extends `-${infer MI}`
-                        ? DigitsLessThan<MI, NI>
+                        ? LessThanForDigits<MI, NI>
                         : never // Unreachable
                     : N extends 0
                       ? false
@@ -58,16 +58,16 @@ export type LessThan<N extends number, M extends number> = N extends N
                             : `${N}` extends `${infer NI}.${infer NF}`
                               ? `${M}` extends `${infer MI}.${infer MF}`
                                 ? Equals<NI, MI> extends true
-                                  ? AfterDecimalPointDigitsLessThan<NF, MF>
-                                  : DigitsLessThan<NI, MI>
+                                  ? LessThanForAfterDecimalPointDigits<NF, MF>
+                                  : LessThanForDigits<NI, MI>
                                 : Equals<NI, `${M}`> extends true
                                   ? false
-                                  : DigitsLessThan<NI, `${M}`>
+                                  : LessThanForDigits<NI, `${M}`>
                               : `${M}` extends `${infer MI}.${string}`
                                 ? Equals<`${N}`, MI> extends true
                                   ? true
-                                  : DigitsLessThan<`${N}`, MI>
-                                : DigitsLessThan<`${N}`, `${M}`>
+                                  : LessThanForDigits<`${N}`, MI>
+                                : LessThanForDigits<`${N}`, `${M}`>
     : never
   : never
 

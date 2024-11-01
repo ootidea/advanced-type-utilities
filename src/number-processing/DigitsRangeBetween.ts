@@ -1,5 +1,5 @@
 import type { Digit } from '@/common-type-alias/Digit'
-import type { DigitLessThan } from '@/number-comparison/DigitsLessThan'
+import type { LessThanForDigit } from '@/number-comparison/LessThanForDigits'
 import { assertTypeEquality, describe, it, test } from '@/testUtilities'
 import type { Equals } from '@/type-level-predicate/Equals'
 
@@ -76,7 +76,7 @@ type SameLengthDigitsRangeBetween<N extends string, M extends string> = [N, M] e
 ]
   ? Equals<NH, MH> extends true
     ? `${NH}${SameLengthDigitsRangeBetween<NL, ML>}`
-    : DigitLessThan<NH, MH> extends true
+    : LessThanForDigit<NH, MH> extends true
       ?
           | `${NH}${SameLengthDigitsRangeAtLeast<NL>}`
           | `${DigitRangeStrictlyBetween<NH, MH>}${ReplaceAllLetterWithDigit<NL>}`

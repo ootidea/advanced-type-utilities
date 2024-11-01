@@ -5,12 +5,12 @@ import type { Equals } from '@/type-level-predicate/Equals'
  * Checks if N < M for natural numbers in string format.
  * Time complexity: O(n), where n is the minimum of the lengths of N and M.
  * @example
- * DigitsLessThan<'123', '456'> // true
- * DigitsLessThan<'123', '123'> // false
- * DigitsLessThan<'123', '50'> // false
+ * LessThanForDigits<'123', '456'> // true
+ * LessThanForDigits<'123', '123'> // false
+ * LessThanForDigits<'123', '50'> // false
  */
-export type DigitsLessThan<N extends string, M extends string> = StringLengthEquals<N, M> extends true
-  ? SameLengthDigitsLessThan<N, M>
+export type LessThanForDigits<N extends string, M extends string> = StringLengthEquals<N, M> extends true
+  ? LessThanForSameLengthDigits<N, M>
   : StringLengthLessThan<N, M>
 
 /**
@@ -45,18 +45,18 @@ type StringLengthLessThan<N extends string, M extends string> = N extends `${str
  * Returns true if N < M.
  * N and M must have the same number of digits.
  * @example
- * SameLengthDigitsLessThan<'123', '456> // true
+ * LessThanForSameLengthDigits<'123', '456> // true
  */
-type SameLengthDigitsLessThan<N extends string, M extends string> = [N, M] extends [
+type LessThanForSameLengthDigits<N extends string, M extends string> = [N, M] extends [
   `${infer NH extends Digit}${infer NL}`,
   `${infer MH extends Digit}${infer ML}`,
 ]
   ? Equals<NH, MH> extends true
-    ? SameLengthDigitsLessThan<NL, ML>
-    : DigitLessThan<NH, MH>
+    ? LessThanForSameLengthDigits<NL, ML>
+    : LessThanForDigit<NH, MH>
   : false
 
-export type DigitLessThan<N extends Digit, M extends Digit> = {
+export type LessThanForDigit<N extends Digit, M extends Digit> = {
   '0': { '0': false; '1': true; '2': true; '3': true; '4': true; '5': true; '6': true; '7': true; '8': true; '9': true }
   '1': { '0': false; '1': false; '2': true; '3': true; '4': true; '5': true; '6': true; '7': true; '8': true; '9': true }
   '2': { '0': false; '1': false; '2': false; '3': true; '4': true; '5': true; '6': true; '7': true; '8': true; '9': true }
