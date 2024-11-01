@@ -31,6 +31,7 @@ export type { NumberOrderRankOf } from '@/number-processing/NumberOrderRankOf'
 export type { Trunc } from '@/number-processing/Trunc'
 
 export type { DeepReadonly } from '@/object-manipulation/DeepReadonly'
+export type { DiscriminatedUnion } from '@/object-manipulation/DiscriminatedUnion'
 export type { FillOptionalNeverProperties } from '@/object-manipulation/FillOptionalNeverProperties'
 export type { MakeOptionalPropertiesAcceptUndefined } from '@/object-manipulation/MakeOptionalPropertiesAcceptUndefined'
 export type { MergeObjectIntersection } from '@/object-manipulation/MergeObjectIntersection'
