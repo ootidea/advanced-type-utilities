@@ -40,6 +40,7 @@ export type { OverwriteProperties } from '@/object-manipulation/OverwritePropert
 export type { ValueOf } from '@/object-manipulation/ValueOf'
 export type { Writable } from '@/object-manipulation/Writable'
 
+export type { Branded } from '@/other/Branded'
 export type { LiteralAutoComplete } from '@/other/LiteralAutoComplete'
 
 export type { Join } from '@/string-processing/Join'
