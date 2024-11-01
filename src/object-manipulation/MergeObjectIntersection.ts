@@ -6,6 +6,7 @@ export type MergeObjectIntersection<T extends object> = Equals<T, any> extends t
 it('merges intersections of object types', () => {
   assertTypeEquality<MergeObjectIntersection<{ a: 1 } & { b: 2 }>, { a: 1; b: 2 }>()
   assertTypeEquality<MergeObjectIntersection<{ a: 1 } & {}>, { a: 1 }>()
+  assertTypeEquality<MergeObjectIntersection<{ a: number } & { a?: 1 }>, { a: 1 }>()
 })
 it('also merges index signatures', () => {
   assertTypeEquality<MergeObjectIntersection<{ a: 1 } & { [x: number]: 2 }>, { a: 1; [x: number]: 2 }>()
