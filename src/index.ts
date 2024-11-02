@@ -4,6 +4,7 @@ export type { DescendingSequentialNumbersThrough } from '@/array-generation/Desc
 export type { NonEmptyArray } from '@/array-generation/NonEmptyArray'
 export type { SequentialNumbersThrough } from '@/array-generation/SequentialNumbersThrough'
 
+export type { Flatten } from '@/array-manipulation/Flatten'
 export type { OptionalElementsToUnion } from '@/array-manipulation/OptionalElementsToUnion'
 export type { RemoveAll } from '@/array-manipulation/RemoveAll'
 
